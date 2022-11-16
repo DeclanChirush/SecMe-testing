@@ -1,3 +1,9 @@
+/**
+ * @Author:  IT19180526 - S.A.N.L.D. Chandrasiri
+ * @Decription: This class is used to test the Admin user's authentication and functionality
+ * @Version: 1.0
+ */
+
 package com.secme.secmetesting.auth;
 
 import com.codeborne.selenide.Configuration;
@@ -7,6 +13,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,17 +23,26 @@ import static org.testng.Assert.assertEquals;
 
 public class AuthPageAdminTest {
 
+    // Create an object of AuthPage class
     AuthPage authPage = new AuthPage();
 
+    // Set up browser size and add Allure Selenide listener
     @BeforeClass
     public static void setUpAll() {
         Configuration.browserSize = "1280x800";
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
+    // Navigate to the root page before each test
     @BeforeMethod
-    public void setUp() {
+    public void navigateRoot() {
         open("https://localhost:3000");
+    }
+
+    // Logout user after tests execution
+    @AfterClass
+    public void logoutUser() {
+        authPage.logoutButton.click();
     }
 
     @Severity(SeverityLevel.CRITICAL)
@@ -53,10 +69,10 @@ public class AuthPageAdminTest {
         assertEquals(authPage.authenticationMessage.getText(), "User is authenticated!");
     }
 
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.MINOR)
     @Description("Check Admin privileges in public access")
     @Story("Test verify the response of the public access button")
-    @Test(priority = 1, testName = "Check Admin privileges in public access")
+    @Test(priority = 1, description = "Check Admin privileges in public access")
     public void checkAdminPrivilegePublicAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
@@ -79,7 +95,7 @@ public class AuthPageAdminTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("Check Admin privileges in private access")
     @Story("Test verify the response of the private access button")
-    @Test(priority = 2, testName = "Check Admin privileges in private access")
+    @Test(priority = 2, description = "Check Admin privileges in private access")
     public void checkAdminPrivilegePrivateAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
@@ -102,7 +118,7 @@ public class AuthPageAdminTest {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Check Admin privileges in Admin access")
     @Story("Test verify the response of the Admin access button")
-    @Test(priority = 3, testName = "Check Admin privileges in Admin access")
+    @Test(priority = 3, description = "Check Admin privileges in Admin access")
     public void checkAdminPrivilegeAdminAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
@@ -125,7 +141,7 @@ public class AuthPageAdminTest {
     @Severity(SeverityLevel.MINOR)
     @Description("Check Admin privileges in Manager access")
     @Story("Test verify the response of the Manager access button")
-    @Test(priority = 4, testName = "Check Admin privileges in Manager access")
+    @Test(priority = 4, description = "Check Admin privileges in Manager access")
     public void checkAdminPrivilegeManagerAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
@@ -148,7 +164,7 @@ public class AuthPageAdminTest {
     @Severity(SeverityLevel.MINOR)
     @Description("Check Admin privileges in Worker access")
     @Story("Test verify the response of the Worker access button")
-    @Test(priority = 5, testName = "Check Admin privileges in Worker access")
+    @Test(priority = 5, description = "Check Admin privileges in Worker access")
     public void checkAdminPrivilegeWorkerAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();

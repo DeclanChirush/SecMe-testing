@@ -2,6 +2,10 @@ package com.secme.secmetesting.auth;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -25,6 +29,9 @@ public class AuthPageAdminTest {
         open("https://localhost:3000");
     }
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Login to the application by Admin")
+    @Story("Test verify the logged user's username and authentication validity")
     @Test(description = "Login to the application by Admin")
     public void loginAdminTest() {
         //Click login button in home page navigation bar
@@ -46,6 +53,9 @@ public class AuthPageAdminTest {
         assertEquals(authPage.authenticationMessage.getText(), "User is authenticated!");
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Check Admin privileges in public access")
+    @Story("Test verify the response of the public access button")
     @Test(priority = 1, testName = "Check Admin privileges in public access")
     public void checkAdminPrivilegePublicAccessTest() {
         // Navigate to dashboard
@@ -66,6 +76,9 @@ public class AuthPageAdminTest {
         }
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Check Admin privileges in private access")
+    @Story("Test verify the response of the private access button")
     @Test(priority = 2, testName = "Check Admin privileges in private access")
     public void checkAdminPrivilegePrivateAccessTest() {
         // Navigate to dashboard
@@ -86,6 +99,9 @@ public class AuthPageAdminTest {
         }
     }
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Check Admin privileges in Admin access")
+    @Story("Test verify the response of the Admin access button")
     @Test(priority = 3, testName = "Check Admin privileges in Admin access")
     public void checkAdminPrivilegeAdminAccessTest() {
         // Navigate to dashboard
@@ -106,6 +122,9 @@ public class AuthPageAdminTest {
         }
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Description("Check Admin privileges in Manager access")
+    @Story("Test verify the response of the Manager access button")
     @Test(priority = 4, testName = "Check Admin privileges in Manager access")
     public void checkAdminPrivilegeManagerAccessTest() {
         // Navigate to dashboard
@@ -126,6 +145,9 @@ public class AuthPageAdminTest {
         }
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Description("Check Admin privileges in Worker access")
+    @Story("Test verify the response of the Worker access button")
     @Test(priority = 5, testName = "Check Admin privileges in Worker access")
     public void checkAdminPrivilegeWorkerAccessTest() {
         // Navigate to dashboard

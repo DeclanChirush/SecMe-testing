@@ -6,6 +6,8 @@
 package com.secme.secmetesting.files;
 
 import com.codeborne.selenide.SelenideElement;
+import org.w3c.dom.html.HTMLInputElement;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class FilePage {
@@ -36,5 +38,20 @@ public class FilePage {
     public SelenideElement fileUploadButtonClick = $x("//*[contains(@class, 'btn btn-success text-center btn btn-primary')]");
 
     //Get second child div tag of file upload success message
-    public SelenideElement fileUploadSuccessMessage = $x("//*[contains(@class, 'Toastify__toast-body')]/div[2]");
+    public SelenideElement fileToastMessageResponse = $x("//*[contains(@class, 'Toastify__toast-body')]/div[2]");
+
+    //Navigate to file view page
+    public SelenideElement fileViewNavigationButton = $x("//a[@href='/file-list']");
+
+    //File download button
+    public SelenideElement fileDownloadButton = $x("//button[@id='download-file']");
+
+    //File delete button
+    public SelenideElement fileDeleteButton = $x("//button[@id='delete-file']");
+
+    //File delete confirmation button
+    public SelenideElement fileDeleteConfirmationButton = $x("//button[@id='delete-file-confirmation']");
+
+    //Logout button
+    public SelenideElement logoutButton = $x("//*[contains(@class, 'navbar-nav')]//button");
 }

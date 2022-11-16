@@ -1,3 +1,9 @@
+/**
+ * @Author:  IT19180526 - S.A.N.L.D. Chandrasiri
+ * @Decription: This class is used to store constants related to Auth Page and Root Page
+ * @Version: 1.0
+ */
+
 package com.secme.secmetesting.auth;
 
 import com.codeborne.selenide.SelenideElement;
@@ -47,4 +53,7 @@ public class AuthPage {
 
     // Auth Response message
     public SelenideElement authResponseMessage = $x("//*[contains(@class, 'pt-5')]//h4");
+
+    // Logout button xpath
+    public SelenideElement logoutButton = $x("//*[contains(@class, 'navbar-nav')]//button");
 }

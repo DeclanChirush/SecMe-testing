@@ -1,6 +1,6 @@
 /**
  * @Author:  IT19180526 - S.A.N.L.D. Chandrasiri
- * @Decription: This class is used to test the Admin user's authentication and functionality
+ * @Decription: This class is used to test the Manager user's authentication and functionality
  * @Version: 1.0
  */
 
@@ -13,15 +13,12 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.testng.Assert.assertEquals;
 
-public class AuthPageAdminTest {
+public class AuthPageManagerTest {
 
     // Create an object of AuthPage class
     AuthPage authPage = new AuthPage();
@@ -46,15 +43,15 @@ public class AuthPageAdminTest {
     }
 
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Login to the application by Admin")
+    @Description("Login to the application by Manager")
     @Story("Test verify the logged user's username and authentication validity")
-    @Test(description = "Login to the application by Admin")
-    public void loginAdminTest() {
+    @Test(description = "Login to the application by Manager")
+    public void loginManagerTest() {
         //Click login button in home page navigation bar
         authPage.homeNavigationLoginButton.click();
 
         //Enter email
-        authPage.emailInputField.sendKeys("admin@secme.com");
+        authPage.emailInputField.sendKeys("manager1@secme.com");
 
         //Enter password
         authPage.passwordInputField.sendKeys("RHN@2022");
@@ -63,17 +60,17 @@ public class AuthPageAdminTest {
         authPage.loginButton.click();
 
         //Find user logged name in home page navigation bar
-        assertEquals(authPage.userAuthenticationSuccessMessage.getText(), "Admin");
+        assertEquals(authPage.userAuthenticationSuccessMessage.getText(), "Manager U1");
 
         //Check the user is authenticated
         assertEquals(authPage.authenticationMessage.getText(), "User is authenticated!");
     }
 
     @Severity(SeverityLevel.MINOR)
-    @Description("Check Admin privileges in public access")
+    @Description("Check Manager privileges in public access")
     @Story("Test verify the response of the public access button")
-    @Test(priority = 1, description = "Check Admin privileges in public access")
-    public void checkAdminPrivilegePublicAccessTest() {
+    @Test(priority = 1, description = "Check Manager privileges in public access")
+    public void checkManagerPrivilegePublicAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
 
@@ -93,10 +90,10 @@ public class AuthPageAdminTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
-    @Description("Check Admin privileges in private access")
+    @Description("Check Manager privileges in private access")
     @Story("Test verify the response of the private access button")
-    @Test(priority = 2, description = "Check Admin privileges in private access")
-    public void checkAdminPrivilegePrivateAccessTest() {
+    @Test(priority = 2, description = "Check Manager privileges in private access")
+    public void checkManagerPrivilegePrivateAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
 
@@ -116,10 +113,10 @@ public class AuthPageAdminTest {
     }
 
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Check Admin privileges in Admin access")
+    @Description("Check Manager privileges in Admin access")
     @Story("Test verify the response of the Admin access button")
-    @Test(priority = 3, description = "Check Admin privileges in Admin access")
-    public void checkAdminPrivilegeAdminAccessTest() {
+    @Test(priority = 3, description = "Check Manager privileges in Admin access")
+    public void checkManagerPrivilegeAdminAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
 
@@ -132,17 +129,17 @@ public class AuthPageAdminTest {
         try {
             Thread.sleep(3000);
             // Check the public access message
-            assertEquals(authPage.authResponseMessage.getText(), "Authenticated. Role:Admin");
+            assertEquals(authPage.authResponseMessage.getText(), "Request failed with status code 403");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    @Severity(SeverityLevel.MINOR)
-    @Description("Check Admin privileges in Manager access")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Check Manager privileges in Manager access")
     @Story("Test verify the response of the Manager access button")
-    @Test(priority = 4, description = "Check Admin privileges in Manager access")
-    public void checkAdminPrivilegeManagerAccessTest() {
+    @Test(priority = 4, description = "Check Manager privileges in Manager access")
+    public void checkManagerPrivilegeManagerAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
 
@@ -161,11 +158,11 @@ public class AuthPageAdminTest {
         }
     }
 
-    @Severity(SeverityLevel.MINOR)
-    @Description("Check Admin privileges in Worker access")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Check Manager privileges in Worker access")
     @Story("Test verify the response of the Worker access button")
-    @Test(priority = 5, description = "Check Admin privileges in Worker access")
-    public void checkAdminPrivilegeWorkerAccessTest() {
+    @Test(priority = 5, description = "Check Manager privileges in Worker access")
+    public void checkManagerPrivilegeWorkerAccessTest() {
         // Navigate to dashboard
         authPage.dashboardNavigationButton.click();
 
@@ -178,7 +175,7 @@ public class AuthPageAdminTest {
         try {
             Thread.sleep(3000);
             // Check the public access message
-            assertEquals(authPage.authResponseMessage.getText(), "Authenticated. Role:Worker");
+            assertEquals(authPage.authResponseMessage.getText(), "Request failed with status code 403");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
